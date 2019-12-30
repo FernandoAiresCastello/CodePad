@@ -9,13 +9,15 @@ namespace CodePad
 {
     public class Settings
     {
+        public static readonly string SettingsFile = "settings.ini";
+
         public string CompilerDirectory { set; get; }
         public string CompilerExecutable { set; get; }
         public string CompilerHelpDirectory { set; get; }
 
-        public Settings(string path)
+        public Settings()
         {
-            string[] lines = File.ReadAllLines(path);
+            string[] lines = File.ReadAllLines(SettingsFile);
 
             CompilerDirectory = lines[0].Trim();
             CompilerExecutable = lines[1].Trim();

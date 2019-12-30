@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace CodePad
 {
@@ -17,12 +19,46 @@ namespace CodePad
         private KeywordList Keywords;
         private KeywordList FilteredKeywords;
         private Scintilla TxtProgram;
+        private Font CurrentFont;
+
+        private Style DefaultStyle => TxtProgram.Styles[Style.Default];
+
+        private string CurrentFile
+        {
+            get => TxtFilePath.Text;
+            set => TxtFilePath.Text = value;
+        }
+
+        private string CurrentFolder => Path.GetDirectoryName(CurrentFile);
+        private string CurrentExecutable => Path.Combine(CurrentFolder, Path.GetFileNameWithoutExtension(CurrentFile) + ".exe");
+
+        private bool FileSaved => !CurrentFile.Equals(Unsaved);
+
+        private const string Unsaved = "Unsaved";
+        private const string TempFile = "temp.bas";
+        private const string TempExecutable = "temp.exe";
+
+        private readonly string TempPath = Path.Combine(Application.StartupPath, "temp");
 
         public MainWindow()
         {
+            InitializeTempFolder();
             InitializeComponent();
             InitializeScintilla();
             InitializeKeywords();
+
+            CurrentFile = Unsaved;
+        }
+
+        private void InitializeTempFolder()
+        {
+            if (!Directory.Exists(TempPath))
+                Directory.CreateDirectory(TempPath);
+
+            var tempFiles = Directory.EnumerateFiles(TempPath);
+
+            foreach (string file in tempFiles)
+                File.Delete(file);
         }
 
         private void InitializeScintilla()
@@ -34,17 +70,54 @@ namespace CodePad
             TxtProgram.Margins[0].Width = 40;
             TxtProgram.FontQuality = FontQuality.LcdOptimized;
             TxtProgram.ScrollWidthTracking = true;
-            TxtProgram.BorderStyle = BorderStyle.None;
+            TxtProgram.CaretStyle = CaretStyle.Block;
+            TxtProgram.EdgeColumn = 80;
+            TxtProgram.EdgeMode = EdgeMode.None;
 
-            foreach (Style style in TxtProgram.Styles)
-            {
-                style.Font = "Consolas";
-            }
+            SetFont("Fixedsys", 8);
+            SetBackColor(Color.White);
+            SetForeColor(Color.Black);
+        }
+
+        private void SetFont(string name, float size, bool bold = false)
+        {
+            CurrentFont = new Font(name, size);
+
+            DefaultStyle.Font = name;
+            DefaultStyle.Size = (int)size;
+            DefaultStyle.Bold = bold;
+
+            TxtProgram.StyleClearAll();
+        }
+
+        private void SetBackColor(Color color)
+        {
+            DefaultStyle.BackColor = color;
+            TxtProgram.SetSelectionForeColor(true, color);
+            TxtProgram.StyleClearAll();
+        }
+
+        private void SetForeColor(Color color)
+        {
+            DefaultStyle.ForeColor = color;
+            TxtProgram.CaretForeColor = color;
+            TxtProgram.SetSelectionBackColor(true, color);
+            TxtProgram.StyleClearAll();
+        }
+
+        private void SetMarginForeColor(Color color)
+        {
+            TxtProgram.Styles[Style.LineNumber].ForeColor = color;
+        }
+
+        private void SetMarginBackColor(Color color)
+        {
+            TxtProgram.Styles[Style.LineNumber].BackColor = color;
         }
 
         private void InitializeKeywords()
         {
-            Settings = new Settings("settings.ini");
+            Settings = new Settings();
             Keywords = new KeywordList(Settings.CompilerHelpDirectory);
             FilteredKeywords = new KeywordList(Keywords);
             UpdateKeywordTable(FilteredKeywords);
@@ -151,6 +224,181 @@ namespace CodePad
         private void BtnToggleHelp_Click(object sender, EventArgs e)
         {
             SplitContainer.Panel2Collapsed = !SplitContainer.Panel2Collapsed;
+        }
+
+        private void BtnOpenSettings_Click(object sender, EventArgs e)
+        {
+            Process.Start(Settings.SettingsFile);
+        }
+
+        private void BtnFont_Click(object sender, EventArgs e)
+        {
+            FontDialog dialog = new FontDialog();
+            dialog.Font = CurrentFont;
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+                SetFont(dialog.Font.Name, dialog.Font.SizeInPoints, dialog.Font.Bold);
+        }
+
+
+        private void BtnCompileRun_Click(object sender, EventArgs e)
+        {
+            if (FileSaved)
+            {
+                SaveFile(CurrentFile);
+                CompileAndRun(CurrentFile, CurrentExecutable);
+            }
+            else
+            {
+                string tempFilePath = Path.Combine(TempPath, TempFile);
+                string tempExecutablePath = Path.Combine(TempPath, TempExecutable);
+
+                SaveFile(tempFilePath);
+                CompileAndRun(tempFilePath, tempExecutablePath);
+            }
+        }
+
+        private void CompileAndRun(string programSourcePath, string programExecutablePath)
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo(
+                Settings.CompilerExecutable,
+                "-c \"" + programSourcePath + "\" -o " + "\"" + programExecutablePath + "\"");
+
+            Process proc = new Process();
+            proc.StartInfo = startInfo;
+            proc.Start();
+            proc.WaitForExit();
+
+            if (proc.ExitCode == 0 && File.Exists(programExecutablePath))
+                Process.Start(programExecutablePath);
+        }
+
+        private void BtnNew_Click(object sender, EventArgs e)
+        {
+            NewFile();
+        }
+
+        private void BtnOpen_Click(object sender, EventArgs e)
+        {
+            OpenFile();
+        }
+
+        private void NewFile()
+        {
+            CurrentFile = Unsaved;
+            TxtProgram.ClearAll();
+        }
+
+        private void OpenFile()
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+
+            if (!FileSaved)
+                dialog.InitialDirectory = Application.StartupPath;
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+                OpenFile(dialog.FileName);
+        }
+
+        private void OpenFile(string file)
+        {
+            TxtProgram.Text = File.ReadAllText(file);
+            CurrentFile = file;
+        }
+
+        private void BtnSaveAs_Click(object sender, EventArgs e)
+        {
+            SaveFileAs();
+        }
+
+        private void SaveFileAs()
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+
+            if (!FileSaved)
+                dialog.InitialDirectory = Application.StartupPath;
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+                SaveFile(dialog.FileName);
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            if (FileSaved)
+                SaveFile(CurrentFile);
+            else
+                SaveFileAs();
+        }
+
+        private void SaveFile(string file)
+        {
+            File.WriteAllText(file, TxtProgram.Text);
+            CurrentFile = file;
+        }
+
+        private void BtnOpenCurrentFolder_Click(object sender, EventArgs e)
+        {
+            if (FileSaved)
+                Process.Start(CurrentFolder);
+            else
+                Process.Start(TempPath);
+        }
+
+        private void BtnSetBackgroundColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog dialog = new ColorDialog();
+            dialog.Color = DefaultStyle.BackColor;
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+                SetBackColor(dialog.Color);
+        }
+
+        private void BtnSetForegroundColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog dialog = new ColorDialog();
+            dialog.Color = DefaultStyle.BackColor;
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+                SetForeColor(dialog.Color);
+        }
+
+        private void BtnViewWiki_Click(object sender, EventArgs e)
+        {
+            string url = "http://www.qb64.org/wiki/" + GetSelectedKeyword().Name;
+            Process.Start(url);
+        }
+
+        private void BtnAbout_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "CodePad (C) 2019\n\nDeveloped by Fernando Aires Castello",
+                "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void BtnFind_Click(object sender, EventArgs e)
+        {
+            FindInProgram(TxtFind.Text);
+        }
+
+        private void FindInProgram(string text)
+        {
+            TxtProgram.TargetStart = TxtProgram.CurrentPosition;
+            TxtProgram.TargetEnd = TxtProgram.TextLength;
+
+            int result = TxtProgram.SearchInTarget(text);
+
+            if (result >= 0)
+            {
+                TxtProgram.CurrentPosition = result;
+                TxtProgram.SelectionStart = result;
+                TxtProgram.SelectionEnd = result + text.Length;
+                TxtProgram.ScrollCaret();
+            }
+            else
+            {
+                MessageBox.Show("Text " + text + " not found", "Search result", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

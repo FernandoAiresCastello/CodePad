@@ -33,7 +33,7 @@ namespace CodePad
         private Keyword ParseKeywordFromFile(FileInfo file)
         {
             string filename = file.Name;
-            string name = filename.Replace(file.Extension, "").Trim().ToUpper();
+            string name = filename.Replace(file.Extension, "").Trim();
             string wikitext = File.ReadAllText(file.FullName);
             string description = name + 
                 Environment.NewLine + 
