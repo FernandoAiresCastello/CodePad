@@ -42,8 +42,10 @@ namespace CodePad
 
         public MainWindow()
         {
-            InitializeTempFolder();
+            Settings = new Settings();
+
             InitializeComponent();
+            InitializeTempFolder();
             InitializeScintilla();
             InitializeKeywords();
 
@@ -63,20 +65,30 @@ namespace CodePad
 
         private void InitializeScintilla()
         {
-            TxtProgram = new Scintilla();
-            TxtProgram.Parent = TxtProgramPanel;
-            TxtProgram.Dock = DockStyle.Fill;
-            TxtProgram.BorderStyle = BorderStyle.None;
-            TxtProgram.Margins[0].Width = 40;
-            TxtProgram.FontQuality = FontQuality.LcdOptimized;
-            TxtProgram.ScrollWidthTracking = true;
-            TxtProgram.CaretStyle = CaretStyle.Block;
-            TxtProgram.EdgeColumn = 80;
-            TxtProgram.EdgeMode = EdgeMode.None;
+            TxtProgram = new Scintilla
+            {
+                Parent = TxtProgramPanel,
+                Dock = DockStyle.Fill,
+                BorderStyle = BorderStyle.None,
+                FontQuality = FontQuality.LcdOptimized,
+                ScrollWidthTracking = true,
+                CaretStyle = CaretStyle.Block,
+                EdgeColumn = 80,
+                EdgeMode = EdgeMode.None
+            };
 
-            SetFont("Fixedsys", 8);
-            SetBackColor(Color.White);
-            SetForeColor(Color.Black);
+            //TxtProgram.Margins[0].Width = 40;
+            foreach (var margin in TxtProgram.Margins)
+                margin.Width = 0;
+
+            SetFont(Settings.Font);
+            SetForeColor(Settings.ForeColor);
+            SetBackColor(Settings.BackColor);
+        }
+
+        private void SetFont(Font font)
+        {
+            SetFont(font.Name, font.Size, font.Style == FontStyle.Bold);
         }
 
         private void SetFont(string name, float size, bool bold = false)
@@ -117,7 +129,6 @@ namespace CodePad
 
         private void InitializeKeywords()
         {
-            Settings = new Settings();
             Keywords = new KeywordList(Settings.CompilerHelpDirectory);
             FilteredKeywords = new KeywordList(Keywords);
             UpdateKeywordTable(FilteredKeywords);

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MiBtnNew = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,12 +71,14 @@
             this.BtnHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.TxtFind = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnNew = new System.Windows.Forms.ToolStripButton();
             this.BtnOpen = new System.Windows.Forms.ToolStripButton();
             this.BtnSave = new System.Windows.Forms.ToolStripButton();
             this.BtnSaveAs = new System.Windows.Forms.ToolStripButton();
             this.BtnRun = new System.Windows.Forms.ToolStripButton();
             this.BtnFind = new System.Windows.Forms.ToolStripButton();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.RootPanel.SuspendLayout();
@@ -217,17 +219,19 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
             this.TxtFilePath});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 482);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 478);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(774, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(774, 26);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // TxtFilePath
             // 
+            this.TxtFilePath.Margin = new System.Windows.Forms.Padding(0);
             this.TxtFilePath.Name = "TxtFilePath";
-            this.TxtFilePath.Size = new System.Drawing.Size(25, 17);
+            this.TxtFilePath.Size = new System.Drawing.Size(25, 26);
             this.TxtFilePath.Text = "File";
             // 
             // RootPanel
@@ -237,7 +241,7 @@
             this.RootPanel.Location = new System.Drawing.Point(0, 24);
             this.RootPanel.Name = "RootPanel";
             this.RootPanel.Padding = new System.Windows.Forms.Padding(10, 0, 10, 10);
-            this.RootPanel.Size = new System.Drawing.Size(774, 458);
+            this.RootPanel.Size = new System.Drawing.Size(774, 454);
             this.RootPanel.TabIndex = 3;
             // 
             // SplitContainer
@@ -253,7 +257,7 @@
             // SplitContainer.Panel2
             // 
             this.SplitContainer.Panel2.Controls.Add(this.CommandTablePanel);
-            this.SplitContainer.Size = new System.Drawing.Size(754, 448);
+            this.SplitContainer.Size = new System.Drawing.Size(754, 444);
             this.SplitContainer.SplitterDistance = 520;
             this.SplitContainer.TabIndex = 3;
             // 
@@ -271,8 +275,9 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.TxtConsole);
-            this.splitContainer3.Size = new System.Drawing.Size(520, 448);
-            this.splitContainer3.SplitterDistance = 327;
+            this.splitContainer3.Panel2Collapsed = true;
+            this.splitContainer3.Size = new System.Drawing.Size(520, 444);
+            this.splitContainer3.SplitterDistance = 324;
             this.splitContainer3.TabIndex = 3;
             // 
             // tableLayoutPanel1
@@ -288,7 +293,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(520, 327);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(520, 444);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // toolStrip1
@@ -302,7 +307,8 @@
             this.BtnRun,
             this.toolStripSeparator4,
             this.TxtFind,
-            this.BtnFind});
+            this.BtnFind,
+            this.toolStripSeparator5});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
@@ -323,7 +329,7 @@
             this.TxtProgramPanel.Location = new System.Drawing.Point(0, 31);
             this.TxtProgramPanel.Margin = new System.Windows.Forms.Padding(0);
             this.TxtProgramPanel.Name = "TxtProgramPanel";
-            this.TxtProgramPanel.Size = new System.Drawing.Size(520, 296);
+            this.TxtProgramPanel.Size = new System.Drawing.Size(520, 413);
             this.TxtProgramPanel.TabIndex = 4;
             // 
             // TxtConsole
@@ -335,7 +341,7 @@
             this.TxtConsole.Name = "TxtConsole";
             this.TxtConsole.ReadOnly = true;
             this.TxtConsole.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TxtConsole.Size = new System.Drawing.Size(520, 117);
+            this.TxtConsole.Size = new System.Drawing.Size(520, 116);
             this.TxtConsole.TabIndex = 1;
             this.TxtConsole.WordWrap = false;
             // 
@@ -346,7 +352,7 @@
             this.CommandTablePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CommandTablePanel.Location = new System.Drawing.Point(0, 0);
             this.CommandTablePanel.Name = "CommandTablePanel";
-            this.CommandTablePanel.Size = new System.Drawing.Size(230, 448);
+            this.CommandTablePanel.Size = new System.Drawing.Size(230, 444);
             this.CommandTablePanel.TabIndex = 1;
             // 
             // splitContainer2
@@ -363,8 +369,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tableLayoutPanel2);
-            this.splitContainer2.Size = new System.Drawing.Size(230, 417);
-            this.splitContainer2.SplitterDistance = 204;
+            this.splitContainer2.Size = new System.Drawing.Size(230, 413);
+            this.splitContainer2.SplitterDistance = 202;
             this.splitContainer2.TabIndex = 5;
             // 
             // KeywordTable
@@ -377,14 +383,14 @@
             this.KeywordTable.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.KeywordTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.KeywordTable.ColumnHeadersVisible = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KeywordTable.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KeywordTable.DefaultCellStyle = dataGridViewCellStyle1;
             this.KeywordTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.KeywordTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KeywordTable.Location = new System.Drawing.Point(0, 0);
@@ -396,7 +402,7 @@
             this.KeywordTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.KeywordTable.ShowCellErrors = false;
             this.KeywordTable.ShowRowErrors = false;
-            this.KeywordTable.Size = new System.Drawing.Size(230, 204);
+            this.KeywordTable.Size = new System.Drawing.Size(230, 202);
             this.KeywordTable.TabIndex = 4;
             // 
             // TxtKeywordHelp
@@ -408,7 +414,7 @@
             this.TxtKeywordHelp.Name = "TxtKeywordHelp";
             this.TxtKeywordHelp.ReadOnly = true;
             this.TxtKeywordHelp.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TxtKeywordHelp.Size = new System.Drawing.Size(224, 174);
+            this.TxtKeywordHelp.Size = new System.Drawing.Size(224, 172);
             this.TxtKeywordHelp.TabIndex = 0;
             this.TxtKeywordHelp.WordWrap = false;
             // 
@@ -483,13 +489,13 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(230, 209);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(230, 207);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // BtnViewWiki
             // 
             this.BtnViewWiki.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnViewWiki.Location = new System.Drawing.Point(3, 183);
+            this.BtnViewWiki.Location = new System.Drawing.Point(3, 181);
             this.BtnViewWiki.Name = "BtnViewWiki";
             this.BtnViewWiki.Size = new System.Drawing.Size(224, 23);
             this.BtnViewWiki.TabIndex = 1;
@@ -532,6 +538,11 @@
             this.TxtFind.Margin = new System.Windows.Forms.Padding(4);
             this.TxtFind.Name = "TxtFind";
             this.TxtFind.Size = new System.Drawing.Size(100, 23);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 31);
             // 
             // BtnNew
             // 
@@ -594,6 +605,13 @@
             this.BtnFind.Text = "toolStripButton1";
             this.BtnFind.ToolTipText = "Find";
             this.BtnFind.Click += new System.EventHandler(this.BtnFind_Click);
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Image = global::CodePad.Properties.Resources.script_code;
+            this.toolStripStatusLabel1.Margin = new System.Windows.Forms.Padding(5, 5, 2, 5);
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(16, 16);
             // 
             // MainWindow
             // 
@@ -690,6 +708,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripTextBox TxtFind;
         private System.Windows.Forms.ToolStripButton BtnFind;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 

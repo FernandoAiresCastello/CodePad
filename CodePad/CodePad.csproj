@@ -117,5 +117,8 @@
   <ItemGroup>
     <None Include="Resources\magnifier.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\script_code.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
