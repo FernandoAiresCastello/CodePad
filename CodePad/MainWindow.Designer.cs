@@ -28,57 +28,57 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MiBtnNew = new System.Windows.Forms.ToolStripMenuItem();
             this.MiBtnOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.MiBtnSave = new System.Windows.Forms.ToolStripMenuItem();
             this.MiBtnSaveAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnOpenCurrentFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.MiBtnExit = new System.Windows.Forms.ToolStripMenuItem();
             this.buildRunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MiBtnCompileRun = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnFont = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnSetBackgroundColor = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnSetForegroundColor = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnOpenSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.TxtFilePath = new System.Windows.Forms.ToolStripStatusLabel();
             this.RootPanel = new System.Windows.Forms.Panel();
             this.SplitContainer = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.BtnNew = new System.Windows.Forms.ToolStripButton();
+            this.BtnOpen = new System.Windows.Forms.ToolStripButton();
+            this.BtnSave = new System.Windows.Forms.ToolStripButton();
+            this.BtnSaveAs = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnRun = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.TxtFind = new System.Windows.Forms.ToolStripTextBox();
+            this.BtnFind = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.TxtProgramPanel = new System.Windows.Forms.Panel();
             this.TxtConsole = new System.Windows.Forms.TextBox();
             this.CommandTablePanel = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.KeywordTable = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.TxtKeywordHelp = new System.Windows.Forms.TextBox();
+            this.BtnViewWiki = new System.Windows.Forms.Button();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.TxtFindKeyword = new System.Windows.Forms.ToolStripTextBox();
-            this.BtnFont = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnOpenCurrentFolder = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.BtnSetBackgroundColor = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnSetForegroundColor = new System.Windows.Forms.ToolStripMenuItem();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.BtnViewWiki = new System.Windows.Forms.Button();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnHelp = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.TxtFind = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.BtnNew = new System.Windows.Forms.ToolStripButton();
-            this.BtnOpen = new System.Windows.Forms.ToolStripButton();
-            this.BtnSave = new System.Windows.Forms.ToolStripButton();
-            this.BtnSaveAs = new System.Windows.Forms.ToolStripButton();
-            this.BtnRun = new System.Windows.Forms.ToolStripButton();
-            this.BtnFind = new System.Windows.Forms.ToolStripButton();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.RootPanel.SuspendLayout();
@@ -98,8 +98,8 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KeywordTable)).BeginInit();
-            this.toolStrip2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -164,6 +164,18 @@
             this.MiBtnSaveAs.Text = "Save as";
             this.MiBtnSaveAs.Click += new System.EventHandler(this.BtnSaveAs_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(181, 6);
+            // 
+            // BtnOpenCurrentFolder
+            // 
+            this.BtnOpenCurrentFolder.Name = "BtnOpenCurrentFolder";
+            this.BtnOpenCurrentFolder.Size = new System.Drawing.Size(184, 22);
+            this.BtnOpenCurrentFolder.Text = "Open current folder";
+            this.BtnOpenCurrentFolder.Click += new System.EventHandler(this.BtnOpenCurrentFolder_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -201,6 +213,27 @@
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.viewToolStripMenuItem.Text = "View";
             // 
+            // BtnFont
+            // 
+            this.BtnFont.Name = "BtnFont";
+            this.BtnFont.Size = new System.Drawing.Size(187, 22);
+            this.BtnFont.Text = "Set font";
+            this.BtnFont.Click += new System.EventHandler(this.BtnFont_Click);
+            // 
+            // BtnSetBackgroundColor
+            // 
+            this.BtnSetBackgroundColor.Name = "BtnSetBackgroundColor";
+            this.BtnSetBackgroundColor.Size = new System.Drawing.Size(187, 22);
+            this.BtnSetBackgroundColor.Text = "Set background color";
+            this.BtnSetBackgroundColor.Click += new System.EventHandler(this.BtnSetBackgroundColor_Click);
+            // 
+            // BtnSetForegroundColor
+            // 
+            this.BtnSetForegroundColor.Name = "BtnSetForegroundColor";
+            this.BtnSetForegroundColor.Size = new System.Drawing.Size(187, 22);
+            this.BtnSetForegroundColor.Text = "Set foreground color";
+            this.BtnSetForegroundColor.Click += new System.EventHandler(this.BtnSetForegroundColor_Click);
+            // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -216,6 +249,30 @@
             this.BtnOpenSettings.Text = "Open settings file";
             this.BtnOpenSettings.Click += new System.EventHandler(this.BtnOpenSettings_Click);
             // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BtnHelp,
+            this.BtnAbout});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // BtnHelp
+            // 
+            this.BtnHelp.Name = "BtnHelp";
+            this.BtnHelp.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.BtnHelp.Size = new System.Drawing.Size(150, 22);
+            this.BtnHelp.Text = "Help panel";
+            this.BtnHelp.Click += new System.EventHandler(this.BtnToggleHelp_Click);
+            // 
+            // BtnAbout
+            // 
+            this.BtnAbout.Name = "BtnAbout";
+            this.BtnAbout.Size = new System.Drawing.Size(150, 22);
+            this.BtnAbout.Text = "About";
+            this.BtnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -226,6 +283,13 @@
             this.statusStrip1.Size = new System.Drawing.Size(774, 26);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Image = global::CodePad.Properties.Resources.script_code;
+            this.toolStripStatusLabel1.Margin = new System.Windows.Forms.Padding(5, 5, 2, 5);
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(16, 16);
             // 
             // TxtFilePath
             // 
@@ -240,14 +304,13 @@
             this.RootPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RootPanel.Location = new System.Drawing.Point(0, 24);
             this.RootPanel.Name = "RootPanel";
-            this.RootPanel.Padding = new System.Windows.Forms.Padding(10, 0, 10, 10);
             this.RootPanel.Size = new System.Drawing.Size(774, 454);
             this.RootPanel.TabIndex = 3;
             // 
             // SplitContainer
             // 
             this.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SplitContainer.Location = new System.Drawing.Point(10, 0);
+            this.SplitContainer.Location = new System.Drawing.Point(0, 0);
             this.SplitContainer.Name = "SplitContainer";
             // 
             // SplitContainer.Panel1
@@ -257,8 +320,8 @@
             // SplitContainer.Panel2
             // 
             this.SplitContainer.Panel2.Controls.Add(this.CommandTablePanel);
-            this.SplitContainer.Size = new System.Drawing.Size(754, 444);
-            this.SplitContainer.SplitterDistance = 520;
+            this.SplitContainer.Size = new System.Drawing.Size(774, 454);
+            this.SplitContainer.SplitterDistance = 533;
             this.SplitContainer.TabIndex = 3;
             // 
             // splitContainer3
@@ -276,7 +339,7 @@
             // 
             this.splitContainer3.Panel2.Controls.Add(this.TxtConsole);
             this.splitContainer3.Panel2Collapsed = true;
-            this.splitContainer3.Size = new System.Drawing.Size(520, 444);
+            this.splitContainer3.Size = new System.Drawing.Size(533, 454);
             this.splitContainer3.SplitterDistance = 324;
             this.splitContainer3.TabIndex = 3;
             // 
@@ -293,7 +356,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(520, 444);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(533, 454);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // toolStrip1
@@ -312,237 +375,9 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStrip1.Size = new System.Drawing.Size(520, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(533, 31);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
-            // 
-            // TxtProgramPanel
-            // 
-            this.TxtProgramPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.TxtProgramPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.TxtProgramPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtProgramPanel.Location = new System.Drawing.Point(0, 31);
-            this.TxtProgramPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.TxtProgramPanel.Name = "TxtProgramPanel";
-            this.TxtProgramPanel.Size = new System.Drawing.Size(520, 413);
-            this.TxtProgramPanel.TabIndex = 4;
-            // 
-            // TxtConsole
-            // 
-            this.TxtConsole.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtConsole.Font = new System.Drawing.Font("Consolas", 8F);
-            this.TxtConsole.Location = new System.Drawing.Point(0, 0);
-            this.TxtConsole.Multiline = true;
-            this.TxtConsole.Name = "TxtConsole";
-            this.TxtConsole.ReadOnly = true;
-            this.TxtConsole.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TxtConsole.Size = new System.Drawing.Size(520, 116);
-            this.TxtConsole.TabIndex = 1;
-            this.TxtConsole.WordWrap = false;
-            // 
-            // CommandTablePanel
-            // 
-            this.CommandTablePanel.Controls.Add(this.splitContainer2);
-            this.CommandTablePanel.Controls.Add(this.toolStrip2);
-            this.CommandTablePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CommandTablePanel.Location = new System.Drawing.Point(0, 0);
-            this.CommandTablePanel.Name = "CommandTablePanel";
-            this.CommandTablePanel.Size = new System.Drawing.Size(230, 444);
-            this.CommandTablePanel.TabIndex = 1;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 31);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.KeywordTable);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.tableLayoutPanel2);
-            this.splitContainer2.Size = new System.Drawing.Size(230, 413);
-            this.splitContainer2.SplitterDistance = 202;
-            this.splitContainer2.TabIndex = 5;
-            // 
-            // KeywordTable
-            // 
-            this.KeywordTable.AllowUserToAddRows = false;
-            this.KeywordTable.AllowUserToDeleteRows = false;
-            this.KeywordTable.AllowUserToResizeRows = false;
-            this.KeywordTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.KeywordTable.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.KeywordTable.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            this.KeywordTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.KeywordTable.ColumnHeadersVisible = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KeywordTable.DefaultCellStyle = dataGridViewCellStyle1;
-            this.KeywordTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.KeywordTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.KeywordTable.Location = new System.Drawing.Point(0, 0);
-            this.KeywordTable.MultiSelect = false;
-            this.KeywordTable.Name = "KeywordTable";
-            this.KeywordTable.ReadOnly = true;
-            this.KeywordTable.RowHeadersVisible = false;
-            this.KeywordTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.KeywordTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.KeywordTable.ShowCellErrors = false;
-            this.KeywordTable.ShowRowErrors = false;
-            this.KeywordTable.Size = new System.Drawing.Size(230, 202);
-            this.KeywordTable.TabIndex = 4;
-            // 
-            // TxtKeywordHelp
-            // 
-            this.TxtKeywordHelp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtKeywordHelp.Font = new System.Drawing.Font("Consolas", 8F);
-            this.TxtKeywordHelp.Location = new System.Drawing.Point(3, 3);
-            this.TxtKeywordHelp.Multiline = true;
-            this.TxtKeywordHelp.Name = "TxtKeywordHelp";
-            this.TxtKeywordHelp.ReadOnly = true;
-            this.TxtKeywordHelp.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TxtKeywordHelp.Size = new System.Drawing.Size(224, 172);
-            this.TxtKeywordHelp.TabIndex = 0;
-            this.TxtKeywordHelp.WordWrap = false;
-            // 
-            // toolStrip2
-            // 
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1,
-            this.TxtFindKeyword});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStrip2.Size = new System.Drawing.Size(230, 31);
-            this.toolStrip2.TabIndex = 3;
-            this.toolStrip2.Text = "toolStrip2";
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(93, 28);
-            this.toolStripLabel1.Text = "Keyword search:";
-            // 
-            // TxtFindKeyword
-            // 
-            this.TxtFindKeyword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtFindKeyword.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TxtFindKeyword.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtFindKeyword.Name = "TxtFindKeyword";
-            this.TxtFindKeyword.Size = new System.Drawing.Size(100, 23);
-            // 
-            // BtnFont
-            // 
-            this.BtnFont.Name = "BtnFont";
-            this.BtnFont.Size = new System.Drawing.Size(187, 22);
-            this.BtnFont.Text = "Set font";
-            this.BtnFont.Click += new System.EventHandler(this.BtnFont_Click);
-            // 
-            // BtnOpenCurrentFolder
-            // 
-            this.BtnOpenCurrentFolder.Name = "BtnOpenCurrentFolder";
-            this.BtnOpenCurrentFolder.Size = new System.Drawing.Size(184, 22);
-            this.BtnOpenCurrentFolder.Text = "Open current folder";
-            this.BtnOpenCurrentFolder.Click += new System.EventHandler(this.BtnOpenCurrentFolder_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(181, 6);
-            // 
-            // BtnSetBackgroundColor
-            // 
-            this.BtnSetBackgroundColor.Name = "BtnSetBackgroundColor";
-            this.BtnSetBackgroundColor.Size = new System.Drawing.Size(187, 22);
-            this.BtnSetBackgroundColor.Text = "Set background color";
-            this.BtnSetBackgroundColor.Click += new System.EventHandler(this.BtnSetBackgroundColor_Click);
-            // 
-            // BtnSetForegroundColor
-            // 
-            this.BtnSetForegroundColor.Name = "BtnSetForegroundColor";
-            this.BtnSetForegroundColor.Size = new System.Drawing.Size(187, 22);
-            this.BtnSetForegroundColor.Text = "Set foreground color";
-            this.BtnSetForegroundColor.Click += new System.EventHandler(this.BtnSetForegroundColor_Click);
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.TxtKeywordHelp, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.BtnViewWiki, 0, 1);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(230, 207);
-            this.tableLayoutPanel2.TabIndex = 1;
-            // 
-            // BtnViewWiki
-            // 
-            this.BtnViewWiki.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnViewWiki.Location = new System.Drawing.Point(3, 181);
-            this.BtnViewWiki.Name = "BtnViewWiki";
-            this.BtnViewWiki.Size = new System.Drawing.Size(224, 23);
-            this.BtnViewWiki.TabIndex = 1;
-            this.BtnViewWiki.Text = "View in wiki";
-            this.BtnViewWiki.UseVisualStyleBackColor = true;
-            this.BtnViewWiki.Click += new System.EventHandler(this.BtnViewWiki_Click);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BtnHelp,
-            this.BtnAbout});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // BtnAbout
-            // 
-            this.BtnAbout.Name = "BtnAbout";
-            this.BtnAbout.Size = new System.Drawing.Size(150, 22);
-            this.BtnAbout.Text = "About";
-            this.BtnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
-            // 
-            // BtnHelp
-            // 
-            this.BtnHelp.Name = "BtnHelp";
-            this.BtnHelp.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.BtnHelp.Size = new System.Drawing.Size(150, 22);
-            this.BtnHelp.Text = "Help panel";
-            this.BtnHelp.Click += new System.EventHandler(this.BtnToggleHelp_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
-            // 
-            // TxtFind
-            // 
-            this.TxtFind.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtFind.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtFind.Name = "TxtFind";
-            this.TxtFind.Size = new System.Drawing.Size(100, 23);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 31);
             // 
             // BtnNew
             // 
@@ -584,6 +419,11 @@
             this.BtnSaveAs.Text = "Save file as";
             this.BtnSaveAs.Click += new System.EventHandler(this.BtnSaveAs_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            // 
             // BtnRun
             // 
             this.BtnRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -594,6 +434,18 @@
             this.BtnRun.Text = "Compile/Run";
             this.BtnRun.ToolTipText = "Compile and run";
             this.BtnRun.Click += new System.EventHandler(this.BtnCompileRun_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
+            // 
+            // TxtFind
+            // 
+            this.TxtFind.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtFind.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtFind.Name = "TxtFind";
+            this.TxtFind.Size = new System.Drawing.Size(100, 23);
             // 
             // BtnFind
             // 
@@ -606,12 +458,160 @@
             this.BtnFind.ToolTipText = "Find";
             this.BtnFind.Click += new System.EventHandler(this.BtnFind_Click);
             // 
-            // toolStripStatusLabel1
+            // toolStripSeparator5
             // 
-            this.toolStripStatusLabel1.Image = global::CodePad.Properties.Resources.script_code;
-            this.toolStripStatusLabel1.Margin = new System.Windows.Forms.Padding(5, 5, 2, 5);
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(16, 16);
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 31);
+            // 
+            // TxtProgramPanel
+            // 
+            this.TxtProgramPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.TxtProgramPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.TxtProgramPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtProgramPanel.Location = new System.Drawing.Point(0, 31);
+            this.TxtProgramPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.TxtProgramPanel.Name = "TxtProgramPanel";
+            this.TxtProgramPanel.Size = new System.Drawing.Size(533, 423);
+            this.TxtProgramPanel.TabIndex = 4;
+            // 
+            // TxtConsole
+            // 
+            this.TxtConsole.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtConsole.Font = new System.Drawing.Font("Consolas", 8F);
+            this.TxtConsole.Location = new System.Drawing.Point(0, 0);
+            this.TxtConsole.Multiline = true;
+            this.TxtConsole.Name = "TxtConsole";
+            this.TxtConsole.ReadOnly = true;
+            this.TxtConsole.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.TxtConsole.Size = new System.Drawing.Size(150, 46);
+            this.TxtConsole.TabIndex = 1;
+            this.TxtConsole.WordWrap = false;
+            // 
+            // CommandTablePanel
+            // 
+            this.CommandTablePanel.Controls.Add(this.splitContainer2);
+            this.CommandTablePanel.Controls.Add(this.toolStrip2);
+            this.CommandTablePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CommandTablePanel.Location = new System.Drawing.Point(0, 0);
+            this.CommandTablePanel.Name = "CommandTablePanel";
+            this.CommandTablePanel.Size = new System.Drawing.Size(237, 454);
+            this.CommandTablePanel.TabIndex = 1;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 31);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.KeywordTable);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.tableLayoutPanel2);
+            this.splitContainer2.Size = new System.Drawing.Size(237, 423);
+            this.splitContainer2.SplitterDistance = 206;
+            this.splitContainer2.TabIndex = 5;
+            // 
+            // KeywordTable
+            // 
+            this.KeywordTable.AllowUserToAddRows = false;
+            this.KeywordTable.AllowUserToDeleteRows = false;
+            this.KeywordTable.AllowUserToResizeRows = false;
+            this.KeywordTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.KeywordTable.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.KeywordTable.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.KeywordTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.KeywordTable.ColumnHeadersVisible = false;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KeywordTable.DefaultCellStyle = dataGridViewCellStyle2;
+            this.KeywordTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.KeywordTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.KeywordTable.Location = new System.Drawing.Point(0, 0);
+            this.KeywordTable.MultiSelect = false;
+            this.KeywordTable.Name = "KeywordTable";
+            this.KeywordTable.ReadOnly = true;
+            this.KeywordTable.RowHeadersVisible = false;
+            this.KeywordTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.KeywordTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.KeywordTable.ShowCellErrors = false;
+            this.KeywordTable.ShowRowErrors = false;
+            this.KeywordTable.Size = new System.Drawing.Size(237, 206);
+            this.KeywordTable.TabIndex = 4;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.TxtKeywordHelp, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.BtnViewWiki, 0, 1);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(237, 213);
+            this.tableLayoutPanel2.TabIndex = 1;
+            // 
+            // TxtKeywordHelp
+            // 
+            this.TxtKeywordHelp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtKeywordHelp.Font = new System.Drawing.Font("Consolas", 8F);
+            this.TxtKeywordHelp.Location = new System.Drawing.Point(3, 3);
+            this.TxtKeywordHelp.Multiline = true;
+            this.TxtKeywordHelp.Name = "TxtKeywordHelp";
+            this.TxtKeywordHelp.ReadOnly = true;
+            this.TxtKeywordHelp.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.TxtKeywordHelp.Size = new System.Drawing.Size(231, 171);
+            this.TxtKeywordHelp.TabIndex = 0;
+            this.TxtKeywordHelp.WordWrap = false;
+            // 
+            // BtnViewWiki
+            // 
+            this.BtnViewWiki.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnViewWiki.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnViewWiki.Location = new System.Drawing.Point(3, 180);
+            this.BtnViewWiki.Name = "BtnViewWiki";
+            this.BtnViewWiki.Size = new System.Drawing.Size(231, 30);
+            this.BtnViewWiki.TabIndex = 1;
+            this.BtnViewWiki.Text = "View in wiki";
+            this.BtnViewWiki.UseVisualStyleBackColor = true;
+            this.BtnViewWiki.Click += new System.EventHandler(this.BtnViewWiki_Click);
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.TxtFindKeyword});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Padding = new System.Windows.Forms.Padding(0);
+            this.toolStrip2.Size = new System.Drawing.Size(237, 31);
+            this.toolStrip2.TabIndex = 3;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(93, 28);
+            this.toolStripLabel1.Text = "Keyword search:";
+            // 
+            // TxtFindKeyword
+            // 
+            this.TxtFindKeyword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtFindKeyword.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtFindKeyword.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtFindKeyword.Name = "TxtFindKeyword";
+            this.TxtFindKeyword.Size = new System.Drawing.Size(100, 23);
             // 
             // MainWindow
             // 
@@ -650,10 +650,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.KeywordTable)).EndInit();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
