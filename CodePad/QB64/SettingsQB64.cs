@@ -58,19 +58,20 @@ namespace CodePad.QB64
 
         public override void Save()
         {
-            List<string> lines = new List<string>();
-
-            lines.Add(CompilerDirectory);
-            lines.Add(CompilerExecutable);
-            lines.Add(CompilerHelpDirectory);
-            lines.Add(Font.FontFamily.Name);
-            lines.Add(((int)Font.Size).ToString());
-            lines.Add(Font.Style == FontStyle.Bold ? "true" : "false");
-            lines.Add(ForeColor.ToArgb().ToString());
-            lines.Add(BackColor.ToArgb().ToString());
-            lines.Add(MarginColor.ToArgb().ToString());
-            lines.Add(MainWindowSize.Width.ToString());
-            lines.Add(MainWindowSize.Height.ToString());
+            List<string> lines = new List<string>
+            {
+                CompilerDirectory,
+                CompilerExecutable,
+                CompilerHelpDirectory,
+                Font.FontFamily.Name,
+                ((int)Font.Size).ToString(),
+                Font.Style == FontStyle.Bold ? "true" : "false",
+                ForeColor.ToArgb().ToString(),
+                BackColor.ToArgb().ToString(),
+                MarginColor.ToArgb().ToString(),
+                MainWindowSize.Width.ToString(),
+                MainWindowSize.Height.ToString()
+            };
 
             File.WriteAllLines(SettingsFile, lines);
         }
