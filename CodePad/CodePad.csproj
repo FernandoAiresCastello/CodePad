@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>blockdevice.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\blockdevice.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ScintillaNET">
@@ -125,7 +125,7 @@
     <None Include="Resources\script_code.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="blockdevice.ico" />
+    <Content Include="Resources\blockdevice.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Drawing;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace CodePad.QB64
 {
@@ -72,6 +73,12 @@ namespace CodePad.QB64
             lines.Add(MainWindowSize.Height.ToString());
 
             File.WriteAllLines(SettingsFile, lines);
+        }
+
+        public override ProcessStartInfo GetCompilerProcessInfo(string programSourcePath, string programExecutablePath)
+        {
+            return new ProcessStartInfo(CompilerExecutable,
+                "-c \"" + programSourcePath + "\" -o " + "\"" + programExecutablePath + "\"");
         }
     }
 }

@@ -279,17 +279,31 @@ namespace CodePad
 
         private void CompileAndRun(string programSourcePath, string programExecutablePath)
         {
-            ProcessStartInfo startInfo = new ProcessStartInfo(
-                WindowLogic.Settings.CompilerExecutable,
-                "-c \"" + programSourcePath + "\" -o " + "\"" + programExecutablePath + "\"");
+            if (File.Exists(programExecutablePath))
+                File.Delete(programExecutablePath);
+
+            ProcessStartInfo startInfo = WindowLogic.Settings.GetCompilerProcessInfo(
+                programSourcePath, programExecutablePath);
 
             Process proc = new Process();
             proc.StartInfo = startInfo;
             proc.Start();
             proc.WaitForExit();
 
-            if (proc.ExitCode == 0 && File.Exists(programExecutablePath))
-                Process.Start(programExecutablePath);
+            if (proc.ExitCode == 0)
+            {
+                if (File.Exists(programExecutablePath))
+                {
+                    Process.Start(programExecutablePath);
+                }
+                else
+                {
+                    MessageBox.Show(
+                        $"The compiler did not generate the expected executable file:\n{programExecutablePath}",
+                        "Unknown Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void BtnNew_Click(object sender, EventArgs e)

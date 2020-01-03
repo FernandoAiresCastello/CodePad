@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace CodePad
         public string CompilerDirectory { set; get; }
         public string CompilerExecutable { set; get; }
         public string CompilerHelpDirectory { set; get; }
+        
         public Font Font { set; get; }
         public Color ForeColor { set; get; }
         public Color BackColor { set; get; }
@@ -42,6 +44,11 @@ namespace CodePad
         }
 
         public virtual void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual ProcessStartInfo GetCompilerProcessInfo(string programSourcePath, string programExecutablePath)
         {
             throw new NotImplementedException();
         }
