@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MiBtnNew = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,6 +79,8 @@
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.TxtFindKeyword = new System.Windows.Forms.ToolStripTextBox();
+            this.BtnSetMarginColor = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.RootPanel.SuspendLayout();
@@ -186,6 +188,7 @@
             this.MiBtnExit.Name = "MiBtnExit";
             this.MiBtnExit.Size = new System.Drawing.Size(184, 22);
             this.MiBtnExit.Text = "Exit";
+            this.MiBtnExit.Click += new System.EventHandler(this.MiBtnExit_Click);
             // 
             // buildRunToolStripMenuItem
             // 
@@ -207,11 +210,13 @@
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BtnFont,
+            this.toolStripSeparator6,
+            this.BtnSetForegroundColor,
             this.BtnSetBackgroundColor,
-            this.BtnSetForegroundColor});
+            this.BtnSetMarginColor});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem.Text = "View";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
+            this.viewToolStripMenuItem.Text = "Font/Colors";
             // 
             // BtnFont
             // 
@@ -245,7 +250,7 @@
             // BtnOpenSettings
             // 
             this.BtnOpenSettings.Name = "BtnOpenSettings";
-            this.BtnOpenSettings.Size = new System.Drawing.Size(166, 22);
+            this.BtnOpenSettings.Size = new System.Drawing.Size(180, 22);
             this.BtnOpenSettings.Text = "Open settings file";
             this.BtnOpenSettings.Click += new System.EventHandler(this.BtnOpenSettings_Click);
             // 
@@ -262,14 +267,14 @@
             // 
             this.BtnHelp.Name = "BtnHelp";
             this.BtnHelp.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.BtnHelp.Size = new System.Drawing.Size(150, 22);
+            this.BtnHelp.Size = new System.Drawing.Size(180, 22);
             this.BtnHelp.Text = "Help panel";
             this.BtnHelp.Click += new System.EventHandler(this.BtnToggleHelp_Click);
             // 
             // BtnAbout
             // 
             this.BtnAbout.Name = "BtnAbout";
-            this.BtnAbout.Size = new System.Drawing.Size(150, 22);
+            this.BtnAbout.Size = new System.Drawing.Size(180, 22);
             this.BtnAbout.Text = "About";
             this.BtnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
             // 
@@ -290,6 +295,7 @@
             this.toolStripStatusLabel1.Margin = new System.Windows.Forms.Padding(5, 5, 2, 5);
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(16, 16);
+            this.toolStripStatusLabel1.Click += new System.EventHandler(this.StatusBarCurrentFolder_Click);
             // 
             // TxtFilePath
             // 
@@ -297,6 +303,7 @@
             this.TxtFilePath.Name = "TxtFilePath";
             this.TxtFilePath.Size = new System.Drawing.Size(25, 26);
             this.TxtFilePath.Text = "File";
+            this.TxtFilePath.Click += new System.EventHandler(this.StatusBarCurrentFolder_Click);
             // 
             // RootPanel
             // 
@@ -512,7 +519,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tableLayoutPanel2);
             this.splitContainer2.Size = new System.Drawing.Size(237, 423);
-            this.splitContainer2.SplitterDistance = 206;
+            this.splitContainer2.SplitterDistance = 205;
             this.splitContainer2.TabIndex = 5;
             // 
             // KeywordTable
@@ -525,14 +532,14 @@
             this.KeywordTable.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.KeywordTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.KeywordTable.ColumnHeadersVisible = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KeywordTable.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KeywordTable.DefaultCellStyle = dataGridViewCellStyle1;
             this.KeywordTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.KeywordTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KeywordTable.Location = new System.Drawing.Point(0, 0);
@@ -544,7 +551,7 @@
             this.KeywordTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.KeywordTable.ShowCellErrors = false;
             this.KeywordTable.ShowRowErrors = false;
-            this.KeywordTable.Size = new System.Drawing.Size(237, 206);
+            this.KeywordTable.Size = new System.Drawing.Size(237, 205);
             this.KeywordTable.TabIndex = 4;
             // 
             // tableLayoutPanel2
@@ -559,7 +566,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(237, 213);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(237, 214);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // TxtKeywordHelp
@@ -571,7 +578,7 @@
             this.TxtKeywordHelp.Name = "TxtKeywordHelp";
             this.TxtKeywordHelp.ReadOnly = true;
             this.TxtKeywordHelp.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TxtKeywordHelp.Size = new System.Drawing.Size(231, 171);
+            this.TxtKeywordHelp.Size = new System.Drawing.Size(231, 172);
             this.TxtKeywordHelp.TabIndex = 0;
             this.TxtKeywordHelp.WordWrap = false;
             // 
@@ -579,7 +586,7 @@
             // 
             this.BtnViewWiki.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnViewWiki.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnViewWiki.Location = new System.Drawing.Point(3, 180);
+            this.BtnViewWiki.Location = new System.Drawing.Point(3, 181);
             this.BtnViewWiki.Name = "BtnViewWiki";
             this.BtnViewWiki.Size = new System.Drawing.Size(231, 30);
             this.BtnViewWiki.TabIndex = 1;
@@ -613,6 +620,18 @@
             this.TxtFindKeyword.Name = "TxtFindKeyword";
             this.TxtFindKeyword.Size = new System.Drawing.Size(100, 23);
             // 
+            // BtnSetMarginColor
+            // 
+            this.BtnSetMarginColor.Name = "BtnSetMarginColor";
+            this.BtnSetMarginColor.Size = new System.Drawing.Size(187, 22);
+            this.BtnSetMarginColor.Text = "Set margin color";
+            this.BtnSetMarginColor.Click += new System.EventHandler(this.BtnSetMarginColor_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(184, 6);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -625,6 +644,7 @@
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CodePad";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindow_FormClosed);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -710,6 +730,8 @@
         private System.Windows.Forms.ToolStripButton BtnFind;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripMenuItem BtnSetMarginColor;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
     }
 }
 

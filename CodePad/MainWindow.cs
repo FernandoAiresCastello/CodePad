@@ -56,11 +56,6 @@ namespace CodePad
         {
             if (!Directory.Exists(TempPath))
                 Directory.CreateDirectory(TempPath);
-
-            var tempFiles = Directory.EnumerateFiles(TempPath);
-
-            foreach (string file in tempFiles)
-                File.Delete(file);
         }
 
         private void InitializeScintilla()
@@ -71,17 +66,18 @@ namespace CodePad
                 Dock = DockStyle.Fill,
                 BorderStyle = BorderStyle.None,
                 FontQuality = FontQuality.LcdOptimized,
-                ScrollWidthTracking = true,
                 CaretStyle = CaretStyle.Block,
                 EdgeColumn = 80,
                 EdgeMode = EdgeMode.None
             };
 
-            //TxtProgram.Margins[0].Width = 40;
             foreach (var margin in TxtProgram.Margins)
+            {
                 margin.Width = 0;
+            }
 
             SetFont(Settings.Font);
+            SetMarginColor(Settings.MarginColor);
             SetForeColor(Settings.ForeColor);
             SetBackColor(Settings.BackColor);
         }
@@ -93,7 +89,9 @@ namespace CodePad
 
         private void SetFont(string name, float size, bool bold = false)
         {
-            CurrentFont = new Font(name, size);
+            CurrentFont = new Font(name, size, bold ? FontStyle.Bold : FontStyle.Regular);
+
+            Settings.Font = CurrentFont;
 
             DefaultStyle.Font = name;
             DefaultStyle.Size = (int)size;
@@ -107,6 +105,7 @@ namespace CodePad
             DefaultStyle.BackColor = color;
             TxtProgram.SetSelectionForeColor(true, color);
             TxtProgram.StyleClearAll();
+            Settings.BackColor = color;
         }
 
         private void SetForeColor(Color color)
@@ -115,16 +114,16 @@ namespace CodePad
             TxtProgram.CaretForeColor = color;
             TxtProgram.SetSelectionBackColor(true, color);
             TxtProgram.StyleClearAll();
+            Settings.ForeColor = color;
         }
 
-        private void SetMarginForeColor(Color color)
+        private void SetMarginColor(Color color)
         {
-            TxtProgram.Styles[Style.LineNumber].ForeColor = color;
-        }
-
-        private void SetMarginBackColor(Color color)
-        {
-            TxtProgram.Styles[Style.LineNumber].BackColor = color;
+            Margin margin = TxtProgram.Margins[0];
+            margin.Width = 40;
+            margin.Type = MarginType.Color;
+            margin.BackColor = color;
+            Settings.MarginColor = color;
         }
 
         private void InitializeKeywords()
@@ -251,7 +250,6 @@ namespace CodePad
                 SetFont(dialog.Font.Name, dialog.Font.SizeInPoints, dialog.Font.Bold);
         }
 
-
         private void BtnCompileRun_Click(object sender, EventArgs e)
         {
             if (FileSaved)
@@ -349,28 +347,33 @@ namespace CodePad
 
         private void BtnOpenCurrentFolder_Click(object sender, EventArgs e)
         {
-            if (FileSaved)
-                Process.Start(CurrentFolder);
-            else
-                Process.Start(TempPath);
+            OpenCurrentFolder();
         }
 
         private void BtnSetBackgroundColor_Click(object sender, EventArgs e)
         {
-            ColorDialog dialog = new ColorDialog();
-            dialog.Color = DefaultStyle.BackColor;
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-                SetBackColor(dialog.Color);
+            SetBackColor(SelectColor(DefaultStyle.BackColor));
         }
 
         private void BtnSetForegroundColor_Click(object sender, EventArgs e)
         {
+            SetForeColor(SelectColor(DefaultStyle.ForeColor));
+        }
+
+        private void BtnSetMarginColor_Click(object sender, EventArgs e)
+        {
+            SetMarginColor(SelectColor(TxtProgram.Margins[0].BackColor));
+        }
+
+        private Color SelectColor(Color initialColor)
+        {
             ColorDialog dialog = new ColorDialog();
-            dialog.Color = DefaultStyle.BackColor;
+            dialog.Color = initialColor;
 
             if (dialog.ShowDialog() == DialogResult.OK)
-                SetForeColor(dialog.Color);
+                return dialog.Color;
+
+            return initialColor;
         }
 
         private void BtnViewWiki_Click(object sender, EventArgs e)
@@ -389,6 +392,19 @@ namespace CodePad
         private void BtnFind_Click(object sender, EventArgs e)
         {
             FindInProgram(TxtFind.Text);
+        }
+
+        private void StatusBarCurrentFolder_Click(object sender, EventArgs e)
+        {
+            OpenCurrentFolder();
+        }
+
+        private void OpenCurrentFolder()
+        {
+            if (FileSaved)
+                Process.Start(CurrentFolder);
+            else
+                Process.Start(TempPath);
         }
 
         private void FindInProgram(string text)
@@ -410,6 +426,21 @@ namespace CodePad
                 MessageBox.Show("Text " + text + " not found", "Search result", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void MiBtnExit_Click(object sender, EventArgs e)
+        {
+            Exit();
+        }
+
+        private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Exit();
+        }
+
+        private void Exit()
+        {
+            Settings.Save();
         }
     }
 }
