@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>blockdevice.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ScintillaNET">
       <HintPath>..\..\jacobslusser.ScintillaNET.3.6.3\ScintillaNET.dll</HintPath>
@@ -120,6 +123,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\script_code.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="blockdevice.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
