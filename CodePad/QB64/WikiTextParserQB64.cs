@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodePad
+namespace CodePad.QB64
 {
-    public static class WikiTextParser
+    public static class WikiTextParserQB64
     {
         public static string Parse(string wikitext)
         {

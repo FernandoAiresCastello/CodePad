@@ -15,9 +15,8 @@ namespace CodePad
 {
     public partial class MainWindow : Form
     {
-        private Settings Settings;
-        private KeywordList Keywords;
-        private KeywordList FilteredKeywords;
+        protected MainWindowLogic WindowLogic;
+
         private Scintilla TxtProgram;
         private Font CurrentFont;
 
@@ -40,9 +39,14 @@ namespace CodePad
 
         private readonly string TempPath = Path.Combine(Application.StartupPath, "temp");
 
-        public MainWindow()
+        public MainWindow() : this(null)
         {
-            Settings = new Settings();
+        }
+
+        public MainWindow(MainWindowLogic windowLogic)
+        {
+            WindowLogic = windowLogic;
+            WindowLogic.OnInitSettings();
 
             InitializeComponent();
             InitializeTempFolder();
@@ -76,10 +80,10 @@ namespace CodePad
                 margin.Width = 0;
             }
 
-            SetFont(Settings.Font);
-            SetMarginColor(Settings.MarginColor);
-            SetForeColor(Settings.ForeColor);
-            SetBackColor(Settings.BackColor);
+            SetFont(WindowLogic.Settings.Font);
+            SetMarginColor(WindowLogic.Settings.MarginColor);
+            SetForeColor(WindowLogic.Settings.ForeColor);
+            SetBackColor(WindowLogic.Settings.BackColor);
         }
 
         private void SetFont(Font font)
@@ -91,7 +95,7 @@ namespace CodePad
         {
             CurrentFont = new Font(name, size, bold ? FontStyle.Bold : FontStyle.Regular);
 
-            Settings.Font = CurrentFont;
+            WindowLogic.Settings.Font = CurrentFont;
 
             DefaultStyle.Font = name;
             DefaultStyle.Size = (int)size;
@@ -105,7 +109,7 @@ namespace CodePad
             DefaultStyle.BackColor = color;
             TxtProgram.SetSelectionForeColor(true, color);
             TxtProgram.StyleClearAll();
-            Settings.BackColor = color;
+            WindowLogic.Settings.BackColor = color;
         }
 
         private void SetForeColor(Color color)
@@ -114,7 +118,7 @@ namespace CodePad
             TxtProgram.CaretForeColor = color;
             TxtProgram.SetSelectionBackColor(true, color);
             TxtProgram.StyleClearAll();
-            Settings.ForeColor = color;
+            WindowLogic.Settings.ForeColor = color;
         }
 
         private void SetMarginColor(Color color)
@@ -123,14 +127,14 @@ namespace CodePad
             margin.Width = 40;
             margin.Type = MarginType.Color;
             margin.BackColor = color;
-            Settings.MarginColor = color;
+            WindowLogic.Settings.MarginColor = color;
         }
 
         private void InitializeKeywords()
         {
-            Keywords = new KeywordList(Settings.CompilerHelpDirectory);
-            FilteredKeywords = new KeywordList(Keywords);
-            UpdateKeywordTable(FilteredKeywords);
+            WindowLogic.OnInitKeywords();
+
+            UpdateKeywordTable(WindowLogic.FilteredKeywords);
 
             KeywordTable.SelectionChanged += KeywordTable_SelectionChanged;
             KeywordTable.DoubleClick += KeywordTable_DoubleClick;
@@ -171,7 +175,7 @@ namespace CodePad
 
         private Keyword FindKeywordByName(string name)
         {
-            foreach (Keyword keyword in Keywords)
+            foreach (Keyword keyword in WindowLogic.Keywords)
             {
                 if (keyword.Name.Equals(name))
                     return keyword;
@@ -192,27 +196,27 @@ namespace CodePad
 
         private void FilterKeywords(string filter)
         {
-            FilteredKeywords.Clear();
+            WindowLogic.FilteredKeywords.Clear();
             KeywordTable.DataSource = null;
 
             if (string.IsNullOrWhiteSpace(filter))
             {
-                FilteredKeywords.AddRange(Keywords);
+                WindowLogic.FilteredKeywords.AddRange(WindowLogic.Keywords);
             }
             else
             {
-                KeywordList tempKeywordList = new KeywordList();
+                KeywordList tempKeywordList = WindowLogic.GetEmptyKeywordList();
 
-                foreach (Keyword keyword in Keywords)
+                foreach (Keyword keyword in WindowLogic.Keywords)
                 {
                     if (keyword.Name.Contains(filter))
                         tempKeywordList.Add(keyword);
                 }
 
-                FilteredKeywords.AddRange(tempKeywordList);
+                WindowLogic.FilteredKeywords.AddRange(tempKeywordList);
             }
 
-            UpdateKeywordTable(FilteredKeywords);
+            UpdateKeywordTable(WindowLogic.FilteredKeywords);
             SelectKeywordAt(0);
         }
 
@@ -238,7 +242,7 @@ namespace CodePad
 
         private void BtnOpenSettings_Click(object sender, EventArgs e)
         {
-            Process.Start(Settings.SettingsFile);
+            Process.Start(WindowLogic.Settings.SettingsFile);
         }
 
         private void BtnFont_Click(object sender, EventArgs e)
@@ -270,7 +274,7 @@ namespace CodePad
         private void CompileAndRun(string programSourcePath, string programExecutablePath)
         {
             ProcessStartInfo startInfo = new ProcessStartInfo(
-                Settings.CompilerExecutable,
+                WindowLogic.Settings.CompilerExecutable,
                 "-c \"" + programSourcePath + "\" -o " + "\"" + programExecutablePath + "\"");
 
             Process proc = new Process();
@@ -378,8 +382,11 @@ namespace CodePad
 
         private void BtnViewWiki_Click(object sender, EventArgs e)
         {
-            string url = "http://www.qb64.org/wiki/" + GetSelectedKeyword().Name;
-            Process.Start(url);
+            if (!string.IsNullOrWhiteSpace(WindowLogic.Settings.HelpBaseUrl))
+            {
+                string url = WindowLogic.Settings.HelpBaseUrl + GetSelectedKeyword().Name;
+                Process.Start(url);
+            }
         }
 
         private void BtnAbout_Click(object sender, EventArgs e)
@@ -440,7 +447,7 @@ namespace CodePad
 
         private void Exit()
         {
-            Settings.Save();
+            WindowLogic.Settings.Save();
         }
     }
 }
