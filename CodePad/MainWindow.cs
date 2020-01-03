@@ -49,11 +49,17 @@ namespace CodePad
             WindowLogic.OnInitSettings();
 
             InitializeComponent();
+            InitializeMainWindow();
             InitializeTempFolder();
             InitializeScintilla();
             InitializeKeywords();
 
             CurrentFile = Unsaved;
+        }
+
+        private void InitializeMainWindow()
+        {
+            Size = WindowLogic.Settings.MainWindowSize;
         }
 
         private void InitializeTempFolder()
@@ -448,6 +454,11 @@ namespace CodePad
         private void Exit()
         {
             WindowLogic.Settings.Save();
+        }
+
+        private void MainWindow_SizeChanged(object sender, EventArgs e)
+        {
+            WindowLogic.Settings.MainWindowSize = Size;
         }
     }
 }

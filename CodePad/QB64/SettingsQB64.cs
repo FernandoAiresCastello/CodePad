@@ -29,13 +29,11 @@ namespace CodePad.QB64
 
         public override void LoadDefaults()
         {
+            base.LoadDefaults();
+
             CompilerDirectory = @"C:\Program Files\qb64";
             CompilerExecutable = @"C:\Program Files\qb64\qb64.exe";
             CompilerHelpDirectory = @"C:\Program Files\qb64\internal\help";
-            Font = DefaultFont;
-            ForeColor = DefaultForeColor;
-            BackColor = DefaultBackColor;
-            MarginColor = DefaultMarginColor;
         }
 
         public override void Load()
@@ -54,6 +52,7 @@ namespace CodePad.QB64
             ForeColor = Color.FromArgb(int.Parse(lines[6]));
             BackColor = Color.FromArgb(int.Parse(lines[7]));
             MarginColor = Color.FromArgb(int.Parse(lines[8]));
+            MainWindowSize = new Size(int.Parse(lines[9]), int.Parse(lines[10]));
         }
 
         public override void Save()
@@ -69,6 +68,8 @@ namespace CodePad.QB64
             lines.Add(ForeColor.ToArgb().ToString());
             lines.Add(BackColor.ToArgb().ToString());
             lines.Add(MarginColor.ToArgb().ToString());
+            lines.Add(MainWindowSize.Width.ToString());
+            lines.Add(MainWindowSize.Height.ToString());
 
             File.WriteAllLines(SettingsFile, lines);
         }

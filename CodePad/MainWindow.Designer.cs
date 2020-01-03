@@ -43,8 +43,10 @@
             this.MiBtnCompileRun = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnFont = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnSetBackgroundColor = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnSetForegroundColor = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnSetBackgroundColor = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnSetMarginColor = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnOpenSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,8 +81,6 @@
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.TxtFindKeyword = new System.Windows.Forms.ToolStripTextBox();
-            this.BtnSetMarginColor = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.RootPanel.SuspendLayout();
@@ -225,12 +225,10 @@
             this.BtnFont.Text = "Set font";
             this.BtnFont.Click += new System.EventHandler(this.BtnFont_Click);
             // 
-            // BtnSetBackgroundColor
+            // toolStripSeparator6
             // 
-            this.BtnSetBackgroundColor.Name = "BtnSetBackgroundColor";
-            this.BtnSetBackgroundColor.Size = new System.Drawing.Size(187, 22);
-            this.BtnSetBackgroundColor.Text = "Set background color";
-            this.BtnSetBackgroundColor.Click += new System.EventHandler(this.BtnSetBackgroundColor_Click);
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(184, 6);
             // 
             // BtnSetForegroundColor
             // 
@@ -238,6 +236,20 @@
             this.BtnSetForegroundColor.Size = new System.Drawing.Size(187, 22);
             this.BtnSetForegroundColor.Text = "Set foreground color";
             this.BtnSetForegroundColor.Click += new System.EventHandler(this.BtnSetForegroundColor_Click);
+            // 
+            // BtnSetBackgroundColor
+            // 
+            this.BtnSetBackgroundColor.Name = "BtnSetBackgroundColor";
+            this.BtnSetBackgroundColor.Size = new System.Drawing.Size(187, 22);
+            this.BtnSetBackgroundColor.Text = "Set background color";
+            this.BtnSetBackgroundColor.Click += new System.EventHandler(this.BtnSetBackgroundColor_Click);
+            // 
+            // BtnSetMarginColor
+            // 
+            this.BtnSetMarginColor.Name = "BtnSetMarginColor";
+            this.BtnSetMarginColor.Size = new System.Drawing.Size(187, 22);
+            this.BtnSetMarginColor.Text = "Set margin color";
+            this.BtnSetMarginColor.Click += new System.EventHandler(this.BtnSetMarginColor_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -250,7 +262,7 @@
             // BtnOpenSettings
             // 
             this.BtnOpenSettings.Name = "BtnOpenSettings";
-            this.BtnOpenSettings.Size = new System.Drawing.Size(180, 22);
+            this.BtnOpenSettings.Size = new System.Drawing.Size(166, 22);
             this.BtnOpenSettings.Text = "Open settings file";
             this.BtnOpenSettings.Click += new System.EventHandler(this.BtnOpenSettings_Click);
             // 
@@ -267,14 +279,14 @@
             // 
             this.BtnHelp.Name = "BtnHelp";
             this.BtnHelp.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.BtnHelp.Size = new System.Drawing.Size(180, 22);
+            this.BtnHelp.Size = new System.Drawing.Size(150, 22);
             this.BtnHelp.Text = "Help panel";
             this.BtnHelp.Click += new System.EventHandler(this.BtnToggleHelp_Click);
             // 
             // BtnAbout
             // 
             this.BtnAbout.Name = "BtnAbout";
-            this.BtnAbout.Size = new System.Drawing.Size(180, 22);
+            this.BtnAbout.Size = new System.Drawing.Size(150, 22);
             this.BtnAbout.Text = "About";
             this.BtnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
             // 
@@ -620,18 +632,6 @@
             this.TxtFindKeyword.Name = "TxtFindKeyword";
             this.TxtFindKeyword.Size = new System.Drawing.Size(100, 23);
             // 
-            // BtnSetMarginColor
-            // 
-            this.BtnSetMarginColor.Name = "BtnSetMarginColor";
-            this.BtnSetMarginColor.Size = new System.Drawing.Size(187, 22);
-            this.BtnSetMarginColor.Text = "Set margin color";
-            this.BtnSetMarginColor.Click += new System.EventHandler(this.BtnSetMarginColor_Click);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(184, 6);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -645,6 +645,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CodePad";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindow_FormClosed);
+            this.SizeChanged += new System.EventHandler(this.MainWindow_SizeChanged);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
