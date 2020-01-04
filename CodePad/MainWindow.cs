@@ -17,6 +17,7 @@ namespace CodePad
     {
         protected MainWindowLogic WindowLogic;
 
+        private RecentFiles RecentFiles;
         private Scintilla TxtProgram;
         private Font CurrentFont;
 
@@ -45,11 +46,15 @@ namespace CodePad
 
         public MainWindow(MainWindowLogic windowLogic)
         {
+            InitializeComponent();
+
             WindowLogic = windowLogic;
             WindowLogic.OnInitSettings();
 
-            InitializeComponent();
+            Text += " " + WindowLogic.Settings.MainWindowSubtitle;
+
             InitializeMainWindow();
+            InitializeRecentFiles();
             InitializeTempFolder();
             InitializeScintilla();
             InitializeKeywords();
@@ -60,6 +65,55 @@ namespace CodePad
         private void InitializeMainWindow()
         {
             Size = WindowLogic.Settings.MainWindowSize;
+        }
+
+        private void InitializeRecentFiles()
+        {
+            RecentFiles = new RecentFiles();
+            UpdateRecentFilesMenu();
+        }
+
+        private void UpdateRecentFilesMenu()
+        {
+            var items = MiBtnOpenRecent.DropDownItems;
+
+            items.Clear();
+
+            if (RecentFiles.IsEmpty)
+            {
+                ToolStripMenuItem emptyItem = new ToolStripMenuItem("(Empty)");
+                emptyItem.Enabled = false;
+                items.Add(emptyItem);
+            }
+            else
+            {
+                foreach (string file in RecentFiles.Files)
+                {
+                    items.Add(file, null, (obj, args) => OpenFile(file));
+                }
+
+                items.Add(new ToolStripSeparator());
+                items.Add("Clear list", null, (obj, args) => ConfirmClearRecentFiles());
+            }
+        }
+
+        private void ConfirmClearRecentFiles()
+        {
+            if (Confirm("Clear recent files", "This will clear the recent files list. Are you sure?"))
+            {
+                ClearRecentFiles();
+            }
+        }
+
+        private void ClearRecentFiles()
+        {
+            RecentFiles.Clear();
+            UpdateRecentFilesMenu();
+        }
+
+        private void HelpBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            string style = HelpBrowser.Document.Body.Style;
         }
 
         private void InitializeTempFolder()
@@ -90,6 +144,11 @@ namespace CodePad
             SetMarginColor(WindowLogic.Settings.MarginColor);
             SetForeColor(WindowLogic.Settings.ForeColor);
             SetBackColor(WindowLogic.Settings.BackColor);
+        }
+
+        private void MainWindow_SizeChanged(object sender, EventArgs e)
+        {
+            WindowLogic.Settings.MainWindowSize = Size;
         }
 
         private void SetFont(Font font)
@@ -144,10 +203,10 @@ namespace CodePad
 
             KeywordTable.SelectionChanged += KeywordTable_SelectionChanged;
             KeywordTable.DoubleClick += KeywordTable_DoubleClick;
-            TxtFindKeyword.TextChanged += TxtFindKeyword_TextChanged1;
+            TxtFindKeyword.TextChanged += TxtFindKeyword_TextChanged;
         }
 
-        private void TxtFindKeyword_TextChanged1(object sender, EventArgs e)
+        private void TxtFindKeyword_TextChanged(object sender, EventArgs e)
         {
             FilterKeywords(TxtFindKeyword.Text.Trim());
         }
@@ -161,22 +220,27 @@ namespace CodePad
 
         private void KeywordTable_SelectionChanged(object sender, EventArgs e)
         {
-            if (KeywordTable.SelectedRows.Count > 0)
+            Keyword keyword = GetSelectedKeyword();
+
+            if (KeywordTable.SelectedRows.Count == 0 || keyword == null)
             {
-                Keyword keyword = GetSelectedKeyword();
-                if (keyword != null)
-                    TxtKeywordHelp.Text = keyword.Description;
+                HelpBrowser.Navigate("about:blank");
             }
             else
             {
-                TxtKeywordHelp.Text = "";
+                HelpBrowser.Navigate($"{WindowLogic.Settings.HelpBaseUrl}{keyword.Name}");
             }
         }
 
         private Keyword GetSelectedKeyword()
         {
-            string name = KeywordTable.SelectedRows[0].Cells[0].Value as string;
-            return FindKeywordByName(name);
+            if (KeywordTable.SelectedRows.Count > 0)
+            {
+                string name = KeywordTable.SelectedRows[0].Cells[0].Value as string;
+                return FindKeywordByName(name);
+            }
+
+            return null;
         }
 
         private Keyword FindKeywordByName(string name)
@@ -233,12 +297,6 @@ namespace CodePad
                 KeywordTable.Rows[index].Selected = true;
                 KeywordTable.FirstDisplayedScrollingRowIndex = index;
             }
-        }
-
-        private void TxtFindKeyword_TextChanged(object sender, EventArgs e)
-        {
-            string search = TxtFindKeyword.Text.Trim();
-            FilterKeywords(string.IsNullOrWhiteSpace(search) ? null : search);
         }
 
         private void BtnToggleHelp_Click(object sender, EventArgs e)
@@ -298,28 +356,33 @@ namespace CodePad
                 }
                 else
                 {
-                    MessageBox.Show(
-                        $"The compiler did not generate the expected executable file:\n{programExecutablePath}",
-                        "Unknown Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Error("Unknown Error", $"The compiler did not generate the expected executable file:\n{programExecutablePath}");
                 }
             }
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
         {
-            NewFile();
+            ConfirmCreateNewFile();
+        }
+
+        private void ConfirmCreateNewFile()
+        {
+            if (Confirm("New file", "This will create a new empty file. Are you sure?"))
+            {
+                CreateNewFile();
+            }
+        }
+
+        private void CreateNewFile()
+        {
+            CurrentFile = Unsaved;
+            TxtProgram.ClearAll();
         }
 
         private void BtnOpen_Click(object sender, EventArgs e)
         {
             OpenFile();
-        }
-
-        private void NewFile()
-        {
-            CurrentFile = Unsaved;
-            TxtProgram.ClearAll();
         }
 
         private void OpenFile()
@@ -337,22 +400,13 @@ namespace CodePad
         {
             TxtProgram.Text = File.ReadAllText(file);
             CurrentFile = file;
+            RecentFiles.AddIfNotExists(file);
+            UpdateRecentFilesMenu();
         }
 
         private void BtnSaveAs_Click(object sender, EventArgs e)
         {
             SaveFileAs();
-        }
-
-        private void SaveFileAs()
-        {
-            SaveFileDialog dialog = new SaveFileDialog();
-
-            if (!FileSaved)
-                dialog.InitialDirectory = Application.StartupPath;
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-                SaveFile(dialog.FileName);
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -367,6 +421,19 @@ namespace CodePad
         {
             File.WriteAllText(file, TxtProgram.Text);
             CurrentFile = file;
+            RecentFiles.AddIfNotExists(file);
+            UpdateRecentFilesMenu();
+        }
+
+        private void SaveFileAs()
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+
+            if (!FileSaved)
+                dialog.InitialDirectory = Application.StartupPath;
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+                SaveFile(dialog.FileName);
         }
 
         private void BtnOpenCurrentFolder_Click(object sender, EventArgs e)
@@ -411,9 +478,7 @@ namespace CodePad
 
         private void BtnAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(
-                "CodePad (C) 2019\n\nDeveloped by Fernando Aires Castello",
-                "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Inform("About", "CodePad © 2019-2020\n\nDeveloped by Fernando Aires Castello");
         }
 
         private void BtnFind_Click(object sender, EventArgs e)
@@ -450,14 +515,13 @@ namespace CodePad
             }
             else
             {
-                MessageBox.Show("Text " + text + " not found", "Search result", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Warn("Text not found", "The text '" + text + "' was not found ahead of current cursor position.");
             }
         }
 
         private void MiBtnExit_Click(object sender, EventArgs e)
         {
-            Exit();
+            ForceExit();
         }
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
@@ -465,14 +529,58 @@ namespace CodePad
             Exit();
         }
 
-        private void Exit()
+        private void ForceExit()
         {
-            WindowLogic.Settings.Save();
+            Exit(true);
         }
 
-        private void MainWindow_SizeChanged(object sender, EventArgs e)
+        private void Exit(bool force = false)
         {
-            WindowLogic.Settings.MainWindowSize = Size;
+            WindowLogic.Settings.Save();
+            RecentFiles.Save();
+
+            if (force)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void Inform(string title, string text)
+        {
+            MessageBox.Show(text, title,
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void Warn(string title, string text)
+        {
+            MessageBox.Show(text, title,
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void Error(string title, string text)
+        {
+            MessageBox.Show(text, title,
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private bool Confirm(string title, string text)
+        {
+            return MessageBox.Show(text, title, 
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK;
+        }
+
+        private void TxtFind_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                e.Handled = true;
+                FindInProgram(TxtFind.Text);
+            }
+        }
+
+        private void BtnClearKeywordFilter_Click(object sender, EventArgs e)
+        {
+            TxtFindKeyword.Text = "";
         }
     }
 }

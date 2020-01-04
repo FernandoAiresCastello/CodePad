@@ -12,6 +12,7 @@ namespace CodePad.QB64
 {
     public class SettingsQB64 : Settings
     {
+        public override string MainWindowSubtitle => "for QB64";
         public override string HelpBaseUrl => "http://www.qb64.org/wiki/";
 
         public SettingsQB64()

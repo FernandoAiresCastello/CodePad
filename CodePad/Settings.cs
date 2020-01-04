@@ -10,6 +10,7 @@ namespace CodePad
 {
     public class Settings
     {
+        public virtual string MainWindowSubtitle => "";
         public virtual string SettingsFile => "settings.dat";
         public virtual string HelpBaseUrl => "";
 
