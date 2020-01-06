@@ -34,6 +34,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MiBtnNew = new System.Windows.Forms.ToolStripMenuItem();
             this.MiBtnOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiBtnOpenRecent = new System.Windows.Forms.ToolStripMenuItem();
             this.MiBtnSave = new System.Windows.Forms.ToolStripMenuItem();
             this.MiBtnSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -54,15 +55,22 @@
             this.BtnHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.TxtFilePath = new System.Windows.Forms.ToolStripStatusLabel();
             this.RootPanel = new System.Windows.Forms.Panel();
             this.SplitContainer = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.BtnNew = new System.Windows.Forms.ToolStripButton();
+            this.BtnOpen = new System.Windows.Forms.ToolStripButton();
+            this.BtnSave = new System.Windows.Forms.ToolStripButton();
+            this.BtnSaveAs = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnRun = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.TxtFind = new System.Windows.Forms.ToolStripTextBox();
+            this.BtnFind = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.TxtProgramPanel = new System.Windows.Forms.Panel();
             this.TxtConsole = new System.Windows.Forms.TextBox();
@@ -71,19 +79,11 @@
             this.KeywordTable = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnOpenHelpInBrowser = new System.Windows.Forms.Button();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.TxtFindKeyword = new System.Windows.Forms.ToolStripTextBox();
-            this.MiBtnOpenRecent = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.HelpBrowser = new System.Windows.Forms.WebBrowser();
-            this.BtnNew = new System.Windows.Forms.ToolStripButton();
-            this.BtnOpen = new System.Windows.Forms.ToolStripButton();
-            this.BtnSave = new System.Windows.Forms.ToolStripButton();
-            this.BtnSaveAs = new System.Windows.Forms.ToolStripButton();
-            this.BtnRun = new System.Windows.Forms.ToolStripButton();
-            this.BtnFind = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.TxtFindKeyword = new System.Windows.Forms.ToolStripTextBox();
             this.BtnClearKeywordFilter = new System.Windows.Forms.ToolStripButton();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.RootPanel.SuspendLayout();
@@ -104,8 +104,8 @@
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KeywordTable)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
-            this.toolStrip2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -153,6 +153,12 @@
             this.MiBtnOpen.Size = new System.Drawing.Size(184, 22);
             this.MiBtnOpen.Text = "Open";
             this.MiBtnOpen.Click += new System.EventHandler(this.BtnOpen_Click);
+            // 
+            // MiBtnOpenRecent
+            // 
+            this.MiBtnOpenRecent.Name = "MiBtnOpenRecent";
+            this.MiBtnOpenRecent.Size = new System.Drawing.Size(184, 22);
+            this.MiBtnOpenRecent.Text = "Open recent";
             // 
             // MiBtnSave
             // 
@@ -306,6 +312,14 @@
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Image = global::CodePad.Properties.Resources.script_code;
+            this.toolStripStatusLabel1.Margin = new System.Windows.Forms.Padding(5, 5, 2, 5);
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(16, 16);
+            this.toolStripStatusLabel1.Click += new System.EventHandler(this.StatusBarCurrentFolder_Click);
+            // 
             // TxtFilePath
             // 
             this.TxtFilePath.Margin = new System.Windows.Forms.Padding(0);
@@ -395,10 +409,61 @@
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // BtnNew
+            // 
+            this.BtnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnNew.Image = global::CodePad.Properties.Resources.page_white;
+            this.BtnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnNew.Name = "BtnNew";
+            this.BtnNew.Size = new System.Drawing.Size(23, 28);
+            this.BtnNew.Text = "New file";
+            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
+            // 
+            // BtnOpen
+            // 
+            this.BtnOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnOpen.Image = global::CodePad.Properties.Resources.folder;
+            this.BtnOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnOpen.Name = "BtnOpen";
+            this.BtnOpen.Size = new System.Drawing.Size(23, 28);
+            this.BtnOpen.Text = "Open file";
+            this.BtnOpen.Click += new System.EventHandler(this.BtnOpen_Click);
+            // 
+            // BtnSave
+            // 
+            this.BtnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnSave.Image = global::CodePad.Properties.Resources.diskette;
+            this.BtnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnSave.Name = "BtnSave";
+            this.BtnSave.Size = new System.Drawing.Size(23, 28);
+            this.BtnSave.Text = "Save file";
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            // 
+            // BtnSaveAs
+            // 
+            this.BtnSaveAs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnSaveAs.Image = global::CodePad.Properties.Resources.file_save_as;
+            this.BtnSaveAs.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnSaveAs.Name = "BtnSaveAs";
+            this.BtnSaveAs.Size = new System.Drawing.Size(23, 28);
+            this.BtnSaveAs.Text = "Save file as";
+            this.BtnSaveAs.Click += new System.EventHandler(this.BtnSaveAs_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            // 
+            // BtnRun
+            // 
+            this.BtnRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnRun.Image = global::CodePad.Properties.Resources.control_play_blue;
+            this.BtnRun.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnRun.Name = "BtnRun";
+            this.BtnRun.Size = new System.Drawing.Size(23, 28);
+            this.BtnRun.Text = "Compile/Run";
+            this.BtnRun.ToolTipText = "Compile and run";
+            this.BtnRun.Click += new System.EventHandler(this.BtnCompileRun_Click);
             // 
             // toolStripSeparator4
             // 
@@ -412,6 +477,17 @@
             this.TxtFind.Name = "TxtFind";
             this.TxtFind.Size = new System.Drawing.Size(100, 23);
             this.TxtFind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtFind_KeyPress);
+            // 
+            // BtnFind
+            // 
+            this.BtnFind.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnFind.Image = global::CodePad.Properties.Resources.magnifier;
+            this.BtnFind.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnFind.Name = "BtnFind";
+            this.BtnFind.Size = new System.Drawing.Size(23, 28);
+            this.BtnFind.Text = "toolStripButton1";
+            this.BtnFind.ToolTipText = "Find";
+            this.BtnFind.Click += new System.EventHandler(this.BtnFind_Click);
             // 
             // toolStripSeparator5
             // 
@@ -529,32 +605,6 @@
             this.BtnOpenHelpInBrowser.UseVisualStyleBackColor = true;
             this.BtnOpenHelpInBrowser.Click += new System.EventHandler(this.BtnViewWiki_Click);
             // 
-            // toolStrip2
-            // 
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TxtFindKeyword,
-            this.BtnClearKeywordFilter});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStrip2.Size = new System.Drawing.Size(237, 31);
-            this.toolStrip2.TabIndex = 3;
-            this.toolStrip2.Text = "toolStrip2";
-            // 
-            // TxtFindKeyword
-            // 
-            this.TxtFindKeyword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtFindKeyword.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TxtFindKeyword.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtFindKeyword.Name = "TxtFindKeyword";
-            this.TxtFindKeyword.Size = new System.Drawing.Size(100, 23);
-            // 
-            // MiBtnOpenRecent
-            // 
-            this.MiBtnOpenRecent.Name = "MiBtnOpenRecent";
-            this.MiBtnOpenRecent.Size = new System.Drawing.Size(184, 22);
-            this.MiBtnOpenRecent.Text = "Open recent";
-            // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -576,67 +626,25 @@
             this.HelpBrowser.Size = new System.Drawing.Size(233, 174);
             this.HelpBrowser.TabIndex = 3;
             // 
-            // BtnNew
+            // toolStrip2
             // 
-            this.BtnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnNew.Image = global::CodePad.Properties.Resources.page_white;
-            this.BtnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnNew.Name = "BtnNew";
-            this.BtnNew.Size = new System.Drawing.Size(23, 28);
-            this.BtnNew.Text = "New file";
-            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TxtFindKeyword,
+            this.BtnClearKeywordFilter});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Padding = new System.Windows.Forms.Padding(0);
+            this.toolStrip2.Size = new System.Drawing.Size(237, 31);
+            this.toolStrip2.TabIndex = 3;
+            this.toolStrip2.Text = "toolStrip2";
             // 
-            // BtnOpen
+            // TxtFindKeyword
             // 
-            this.BtnOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnOpen.Image = global::CodePad.Properties.Resources.folder;
-            this.BtnOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnOpen.Name = "BtnOpen";
-            this.BtnOpen.Size = new System.Drawing.Size(23, 28);
-            this.BtnOpen.Text = "Open file";
-            this.BtnOpen.Click += new System.EventHandler(this.BtnOpen_Click);
-            // 
-            // BtnSave
-            // 
-            this.BtnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnSave.Image = global::CodePad.Properties.Resources.diskette;
-            this.BtnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(23, 28);
-            this.BtnSave.Text = "Save file";
-            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            // 
-            // BtnSaveAs
-            // 
-            this.BtnSaveAs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnSaveAs.Image = global::CodePad.Properties.Resources.file_save_as;
-            this.BtnSaveAs.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnSaveAs.Name = "BtnSaveAs";
-            this.BtnSaveAs.Size = new System.Drawing.Size(23, 28);
-            this.BtnSaveAs.Text = "Save file as";
-            this.BtnSaveAs.Click += new System.EventHandler(this.BtnSaveAs_Click);
-            // 
-            // BtnRun
-            // 
-            this.BtnRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnRun.Image = global::CodePad.Properties.Resources.control_play_blue;
-            this.BtnRun.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnRun.Name = "BtnRun";
-            this.BtnRun.Size = new System.Drawing.Size(23, 28);
-            this.BtnRun.Text = "Compile/Run";
-            this.BtnRun.ToolTipText = "Compile and run";
-            this.BtnRun.Click += new System.EventHandler(this.BtnCompileRun_Click);
-            // 
-            // BtnFind
-            // 
-            this.BtnFind.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnFind.Image = global::CodePad.Properties.Resources.magnifier;
-            this.BtnFind.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnFind.Name = "BtnFind";
-            this.BtnFind.Size = new System.Drawing.Size(23, 28);
-            this.BtnFind.Text = "toolStripButton1";
-            this.BtnFind.ToolTipText = "Find";
-            this.BtnFind.Click += new System.EventHandler(this.BtnFind_Click);
+            this.TxtFindKeyword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtFindKeyword.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtFindKeyword.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtFindKeyword.Name = "TxtFindKeyword";
+            this.TxtFindKeyword.Size = new System.Drawing.Size(100, 23);
             // 
             // BtnClearKeywordFilter
             // 
@@ -648,14 +656,6 @@
             this.BtnClearKeywordFilter.Text = "toolStripButton1";
             this.BtnClearKeywordFilter.ToolTipText = "Clear keyword filter";
             this.BtnClearKeywordFilter.Click += new System.EventHandler(this.BtnClearKeywordFilter_Click);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Image = global::CodePad.Properties.Resources.script_code;
-            this.toolStripStatusLabel1.Margin = new System.Windows.Forms.Padding(5, 5, 2, 5);
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(16, 16);
-            this.toolStripStatusLabel1.Click += new System.EventHandler(this.StatusBarCurrentFolder_Click);
             // 
             // MainWindow
             // 
@@ -698,9 +698,9 @@
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.KeywordTable)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

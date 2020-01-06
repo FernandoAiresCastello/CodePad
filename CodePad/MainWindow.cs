@@ -15,6 +15,8 @@ namespace CodePad
 {
     public partial class MainWindow : Form
     {
+        private const string FileChangedIndicator = "*";
+
         protected MainWindowLogic WindowLogic;
 
         private RecentFiles RecentFiles;
@@ -29,10 +31,16 @@ namespace CodePad
             set => TxtFilePath.Text = value;
         }
 
+        private bool FileChanged
+        {
+            get => TxtFilePath.Text.Contains(FileChangedIndicator);
+            set => AppendFileChangedIndicator(value);
+        }
+
         private string CurrentFolder => Path.GetDirectoryName(CurrentFile);
         private string CurrentExecutable => Path.Combine(CurrentFolder, Path.GetFileNameWithoutExtension(CurrentFile) + ".exe");
 
-        private bool FileSaved => !CurrentFile.Equals(Unsaved);
+        private bool IsFileSaved => !CurrentFile.Substring(0, Unsaved.Length).Equals(Unsaved);
 
         private const string Unsaved = "Unsaved";
         private const string TempFile = "temp.bas";
@@ -111,11 +119,6 @@ namespace CodePad
             UpdateRecentFilesMenu();
         }
 
-        private void HelpBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-            string style = HelpBrowser.Document.Body.Style;
-        }
-
         private void InitializeTempFolder()
         {
             if (!Directory.Exists(TempPath))
@@ -135,6 +138,8 @@ namespace CodePad
                 EdgeMode = EdgeMode.None
             };
 
+            TxtProgram.TextChanged += TxtProgram_TextChanged;
+
             foreach (var margin in TxtProgram.Margins)
             {
                 margin.Width = 0;
@@ -144,6 +149,24 @@ namespace CodePad
             SetMarginColor(WindowLogic.Settings.MarginColor);
             SetForeColor(WindowLogic.Settings.ForeColor);
             SetBackColor(WindowLogic.Settings.BackColor);
+        }
+
+        private void TxtProgram_TextChanged(object sender, EventArgs e)
+        {
+            FileChanged = true;
+        }
+
+        private void AppendFileChangedIndicator(bool append)
+        {
+            if (append)
+            {
+                if (!TxtFilePath.Text.Contains(FileChangedIndicator))
+                    TxtFilePath.Text += FileChangedIndicator;
+            }
+            else
+            {
+                TxtFilePath.Text = TxtFilePath.Text.Replace(FileChangedIndicator, "");
+            }
         }
 
         private void MainWindow_SizeChanged(object sender, EventArgs e)
@@ -320,7 +343,7 @@ namespace CodePad
 
         private void BtnCompileRun_Click(object sender, EventArgs e)
         {
-            if (FileSaved)
+            if (IsFileSaved)
             {
                 SaveFile(CurrentFile);
                 CompileAndRun(CurrentFile, CurrentExecutable);
@@ -378,6 +401,7 @@ namespace CodePad
         {
             CurrentFile = Unsaved;
             TxtProgram.ClearAll();
+            FileChanged = false;
         }
 
         private void BtnOpen_Click(object sender, EventArgs e)
@@ -389,7 +413,7 @@ namespace CodePad
         {
             OpenFileDialog dialog = new OpenFileDialog();
 
-            if (!FileSaved)
+            if (!IsFileSaved)
                 dialog.InitialDirectory = Application.StartupPath;
 
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -411,7 +435,7 @@ namespace CodePad
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            if (FileSaved)
+            if (IsFileSaved)
                 SaveFile(CurrentFile);
             else
                 SaveFileAs();
@@ -419,8 +443,11 @@ namespace CodePad
 
         private void SaveFile(string file)
         {
-            File.WriteAllText(file, TxtProgram.Text);
+            if (file.Contains(FileChangedIndicator))
+                file = file.Replace(FileChangedIndicator, "");
+
             CurrentFile = file;
+            File.WriteAllText(file, TxtProgram.Text);
             RecentFiles.AddIfNotExists(file);
             UpdateRecentFilesMenu();
         }
@@ -429,7 +456,7 @@ namespace CodePad
         {
             SaveFileDialog dialog = new SaveFileDialog();
 
-            if (!FileSaved)
+            if (!IsFileSaved)
                 dialog.InitialDirectory = Application.StartupPath;
 
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -493,7 +520,7 @@ namespace CodePad
 
         private void OpenCurrentFolder()
         {
-            if (FileSaved)
+            if (IsFileSaved)
                 Process.Start(CurrentFolder);
             else
                 Process.Start(TempPath);
