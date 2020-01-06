@@ -43,8 +43,6 @@ namespace CodePad
         private bool IsFileSaved => !CurrentFile.Substring(0, Unsaved.Length).Equals(Unsaved);
 
         private const string Unsaved = "Unsaved";
-        private const string TempFile = "temp.bas";
-        private const string TempExecutable = "temp.exe";
 
         private readonly string TempPath = Path.Combine(Application.StartupPath, "temp");
 
@@ -371,8 +369,8 @@ namespace CodePad
             }
             else
             {
-                string tempFilePath = Path.Combine(TempPath, TempFile);
-                string tempExecutablePath = Path.Combine(TempPath, TempExecutable);
+                string tempFilePath = Path.Combine(TempPath, WindowLogic.TempFile);
+                string tempExecutablePath = Path.Combine(TempPath, WindowLogic.TempExecutable);
 
                 SaveFile(tempFilePath);
                 CompileAndRun(tempFilePath, tempExecutablePath);

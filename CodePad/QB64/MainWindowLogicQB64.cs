@@ -8,6 +8,9 @@ namespace CodePad.QB64
 {
     public class MainWindowLogicQB64 : MainWindowLogic
     {
+        public override string TempFile => "temp.bas";
+        public override string TempExecutable => "temp.exe";
+
         public override void OnInitSettings()
         {
             Settings = new SettingsQB64();

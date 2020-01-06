@@ -8,6 +8,9 @@ namespace CodePad
 {
     public class MainWindowLogic
     {
+        public virtual string TempFile => null;
+        public virtual string TempExecutable => null;
+
         public Settings Settings { get; set; }
         public KeywordList Keywords { get; set; }
         public KeywordList FilteredKeywords { get; set; }
