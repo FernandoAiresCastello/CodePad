@@ -97,12 +97,33 @@ namespace CodePad
             {
                 foreach (string file in RecentFiles.Files)
                 {
-                    items.Add(file, null, (obj, args) => OpenFile(file));
+                    items.Add(file, null, (obj, args) => OpenRecentFile(file));
                 }
 
                 items.Add(new ToolStripSeparator());
                 items.Add("Clear list", null, (obj, args) => ConfirmClearRecentFiles());
             }
+        }
+
+        private void OpenRecentFile(string file)
+        {
+            if (File.Exists(file))
+            {
+                OpenFile(file);
+            }
+            else
+            {
+                if (Confirm("File missing", $"The recent file {file} is missing. Remove it from list?"))
+                {
+                    RemoveRecentFile(file);
+                }
+            }
+        }
+
+        private void RemoveRecentFile(string file)
+        {
+            RecentFiles.Files.Remove(file);
+            UpdateRecentFilesMenu();
         }
 
         private void ConfirmClearRecentFiles()
@@ -420,12 +441,21 @@ namespace CodePad
                 OpenFile(dialog.FileName);
         }
 
-        private void OpenFile(string file)
+        private bool OpenFile(string file)
         {
-            TxtProgram.Text = File.ReadAllText(file);
-            CurrentFile = file;
-            RecentFiles.AddIfNotExists(file);
-            UpdateRecentFilesMenu();
+            if (File.Exists(file))
+            {
+                TxtProgram.Text = File.ReadAllText(file);
+                CurrentFile = file;
+                RecentFiles.AddIfNotExists(file);
+                UpdateRecentFilesMenu();
+                return true;
+            }
+            else
+            {
+                Warn("File not found", $"The file {file} was not found");
+                return false;
+            }
         }
 
         private void BtnSaveAs_Click(object sender, EventArgs e)
